@@ -1,20 +1,18 @@
 package com.side.project.entity.member;
 
+import com.side.project.entity.base.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Builder
-public class Member {
-
-    public Member() {}
+@NoArgsConstructor
+@AllArgsConstructor
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue
