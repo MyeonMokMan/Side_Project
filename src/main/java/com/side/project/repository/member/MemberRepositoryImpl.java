@@ -10,12 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @AllArgsConstructor
-@Transactional
 @Log4j2
 public class MemberRepositoryImpl implements MemberRepository {
 
     private final EntityManager em;
 
+    /*
+     * 회원 가입
+     */
     @Override
     public Long save(CreateMemberDTO createMemberDTO) throws Exception {
 
@@ -28,9 +30,10 @@ public class MemberRepositoryImpl implements MemberRepository {
                 .daddress(createMemberDTO.getDaddress())
                 .build();
 
+        // 회원 엔티티 저장
         em.persist(member);
 
-        // 등록 아이디 변경
+        // 회원 공통 필드 등록 아이디 변경
         member.setCreateId(member.getMemberId());
 
         return member.getMemberId();
