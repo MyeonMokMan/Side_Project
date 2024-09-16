@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">끄적끄적</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/notice">공지사항 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/suggest">건의사항</a>
+                </li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                신인철
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <button id="loginPage" class="dropdown-item" type="button">로그인</button>
+                <button id="logoutBtn" class="dropdown-item" type="button">로그아웃</button>
+            </div>
+        </div>
+
+        <script th:inline="javascript">
+
+            $(document).ready(function(){
+
+                /*로그인 버튼 클릭*/
+                $("#loginPage").click(function(e){
+                    location.href="/login";
+                });
+
+                $("#logoutBtn").click(function(e){
+                    alert("로그아웃 합니다.");
+                    return;
+                })
+
+            });
+
+        </script>
+
+
+    </nav>
+
+
+
+
+
+</html>
+
