@@ -1,11 +1,11 @@
 package com.side.project.repository.member;
 
-import com.side.project.createForm.member.CreateMemberDTO;
+import com.side.project.createForm.member.JoinMemberDTO;
 
 public interface MemberRepository {
 
     /*
     * 회원 가입
     */
-    Long save(CreateMemberDTO createMemberDTO) throws Exception;
+    Long save(JoinMemberDTO joinMemberDTO) throws Exception;
 }

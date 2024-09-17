@@ -32,7 +32,17 @@
         </div>
     </div>
 
+    <script th:inline="javascript">
 
+        $(document).ready(function(){
+
+            /*로그인 버튼 클릭*/
+            $("#joinBtn").click(function(e){
+                location.href="/member/join";
+            });
+        });
+
+    </script>
 
 
 </body>

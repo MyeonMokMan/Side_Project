@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="project/common/base :: common_header(~{::title}, ~{::link})">
+    <meta charset="UTF-8">
+    <title>로그인</title>
+
+    <!-- 다음 우편번호 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+</head>
+<body>
+    <!-- Content here -->
+    <div th:replace="project/common/navbar :: navbar"></div>
+
+    <div class="container">
+        <div class="row justify-content-center align-items-center" style="height:50vh">
+            <div class="col-10">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>회원가입</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/member/join" method="post" th:object="${joinMember}" autocomplete="off">
+                            <div class="form-group">
+                                <label for="loginId">아이디를 입력하세요.</label>
+                                <input type="text" class="form-control" id="loginId" th:field="${joinMember.loginId}" placeholder="아이디를 입력하세요.">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">비밀번호를 입력하세요.</label>
+                                <input type="password" class="form-control" id="password" th:field="${joinMember.password}" placeholder="비밀번호를 입력하세요.">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">이름을 입력하세요.</label>
+                                <input type="text" class="form-control" id="name" th:field="${joinMember.name}" placeholder="이름을 입력하세요.">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="zoneCode">우편번호</label>
+                                    <input type="text" class="form-control" id="zoneCode" th:field="${joinMember.zoneCode}" disabled>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="address">주소</label>
+                                    <input type="text" class="form-control" id="address" th:field="${joinMember.address}" disabled>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="daddress">상세주소</label>
+                                    <input type="text" class="form-control" id="daddress" th:field="${joinMember.daddress}">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <button type="button" id="searchAddress">우편번호 검색</button>
+                                </div>
+                            </div>
+                            <button type="button" id="loginBtn" class="btn btn-primary">로그인</button>
+                            <button type="button" id="joinBtn" class="btn btn-warning">회원가입</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+
+        $(document).ready(function(){
+
+            /*로그인 버튼 클릭*/
+            $("#joinBtn").click(function(e){
+                location.href="/member/join";
+            });
+
+            /*우편번호 검색 클릭*/
+            $("#searchAddress").click(function(e) {
+                new daum.Postcode({
+                    oncomplete: function(data) {
+
+                        alert(data);
+
+
+                    }
+                }).open();
+            })
+
+        });
+
+    </script>
+
+
+</body>
+</html>

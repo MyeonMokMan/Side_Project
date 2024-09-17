@@ -3,11 +3,13 @@ package com.side.project.createForm.member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
-public class CreateMemberDTO {
+public class JoinMemberDTO {
 
     private String loginId;
     private String password;
