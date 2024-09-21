@@ -22,16 +22,17 @@
                     <div class="card-body">
                         <form action="/member/join" method="post" th:object="${joinMember}" autocomplete="off">
                             <div class="form-group">
-                                <label for="loginId">아이디<span style="color: #dc3545">*</span></label>
-                                <input type="text" class="form-control" id="loginId" th:field="${joinMember.loginId}" placeholder="아이디를 입력하세요.">
+                                <label for="loginId">아이디<span style="color: #dc3545">*</span>(아이디는 최소 4~20 글자입니다.)</label>
+                                <input type="text" class="form-control" id="loginId" th:field="${joinMember.loginId}" placeholder="아이디를 입력하세요." maxlength="20">
+                            </div>
+                            <button type="button" id="checkLoginId" class="btn btn-primary mb-2">아이디 중복 검사</button>
+                            <div class="form-group">
+                                <label for="password">비밀번호<span style="color: #dc3545">*</span>(비밀번호는 최소 4~20 글자입니다.)</label>
+                                <input type="password" class="form-control" id="password" th:field="${joinMember.password}" placeholder="비밀번호를 입력하세요." maxlength="20">
                             </div>
                             <div class="form-group">
-                                <label for="password">비밀번호<span style="color: #dc3545">*</span></label>
-                                <input type="password" class="form-control" id="password" th:field="${joinMember.password}" placeholder="비밀번호를 입력하세요.">
-                            </div>
-                            <div class="form-group">
-                                <label for="name">이름<span style="color: #dc3545">*</span></label>
-                                <input type="text" class="form-control" id="name" th:field="${joinMember.name}" placeholder="이름을 입력하세요.">
+                                <label for="name">이름<span style="color: #dc3545">*</span>(이름은 최대 10글자입니다.)</label>
+                                <input type="text" class="form-control" id="name" th:field="${joinMember.name}" placeholder="이름을 입력하세요." maxlength="10">
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-2">
@@ -44,7 +45,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="daddress">상세주소</label>
-                                    <input type="text" class="form-control" id="daddress" th:field="${joinMember.daddress}">
+                                    <input type="text" class="form-control" id="daddress" th:field="${joinMember.daddress}" maxlength="50">
                                 </div>
                                 <div class="form-group col-md-2">
                                     <button type="button" id="searchAddress">우편번호 검색</button>
@@ -68,6 +69,7 @@
 
             /*우편번호 검색 클릭*/
             $("#searchAddress").click(function(e) {
+
                 new daum.Postcode({
                     oncomplete: function(data) {
                         $("#zoneCode").val(data.zonecode);
@@ -78,6 +80,35 @@
 
             /*회원가입 클릭*/
             $("#joinBtn").click(function(e) {
+
+                let loginId = $("#loginId").val();
+                let checkLoginValue = $("#checkLoginValue").val();
+                let password = $("#password").val();
+                let name = $("#name").val();
+                let zoneCode = $("#zoneCode").val();
+                let address = $("#address").val();
+                let daddress = $("#daddress").val();
+
+                /*아이디 검사*/
+                if(loginId == null || loginId === "") {
+                    alert("아이디를 입력해주세요.");
+                    $("#loginId").focus();
+                    return false;
+                }
+
+                /*중복 검사*/
+                if(loginId !== "" && checkLoginValue === 0) {
+                    alert("아이디 중복 체크를 해주세요.")
+                    return false;
+                }
+
+                /*패스워드 검사*/
+                if(loginId == null || loginId === "") {
+                    alert("아이디를 입력해주세요.");
+                    $("#loginId").focus();
+                    return false;
+                }
+
 
             });
 

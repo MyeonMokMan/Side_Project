@@ -1,6 +1,7 @@
 package com.side.project.service.member;
 
 import com.side.project.createForm.member.JoinMemberDTO;
+import com.side.project.entity.member.Member;
 import com.side.project.repository.member.MemberRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -20,6 +21,17 @@ public class MemberServiceImpl implements MemberService {
     */
     @Override
     public Long save(JoinMemberDTO joinMemberDTO) throws Exception {
-        return memberRepository.save(joinMemberDTO);
+
+        Member member = Member.builder()
+                .loginId(joinMemberDTO.getLoginId())
+                .pwd(joinMemberDTO.getPassword())
+                .name(joinMemberDTO.getName())
+                .zoneCode(joinMemberDTO.getZoneCode())
+                .address(joinMemberDTO.getAddress())
+                .daddress(joinMemberDTO.getDaddress())
+                .build();
+
+
+        return memberRepository.save(member);
     }
 }

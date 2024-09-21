@@ -1,6 +1,7 @@
 package com.side.project.repository.member;
 
 import com.side.project.createForm.member.JoinMemberDTO;
+import com.side.project.entity.member.Member;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,13 +21,14 @@ class MemberRepositoryImplTest {
     @Test
     @Rollback(false)
     void 회원가입() throws Exception {
-        JoinMemberDTO joinMemberDTO = JoinMemberDTO.builder()
+
+        Member joinMember = Member.builder()
                 .loginId("oniic")
-                .password("1234")
+                .pwd("1234")
                 .name("신인철")
                 .build();
 
-        Long memberId = memberRepository.save(joinMemberDTO);
+        Long memberId = memberRepository.save(joinMember);
         Assertions.assertEquals(memberId, 1L);
     }
 
